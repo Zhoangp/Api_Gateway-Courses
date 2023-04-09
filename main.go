@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/Zhoangp/Api_Gateway-Courses/config"
 	"github.com/Zhoangp/Api_Gateway-Courses/internal/auth-service"
+	"github.com/Zhoangp/Api_Gateway-Courses/internal/file-service"
 	"github.com/Zhoangp/Api_Gateway-Courses/internal/middleware"
 	"github.com/Zhoangp/Api_Gateway-Courses/internal/user-service"
 	"github.com/gin-gonic/gin"
@@ -20,5 +21,6 @@ func main() {
 
 	_ = *auth_service.RegisterAuthRoutes(r, cf)
 	user_service.RegisterUserRoutes(r, cf)
+	file_service.RegisterFileRoute(r, cf)
 	r.Run(cf.Services.Port)
 }

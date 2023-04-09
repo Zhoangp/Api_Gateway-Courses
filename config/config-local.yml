@@ -1,5 +1,6 @@
 services:
   Port: :3000
+  FileUrl: localhost:4000
   AuthUrl: localhost:50051
   UserUrl: localhost:50052
   CourseUrl: localhost:50053

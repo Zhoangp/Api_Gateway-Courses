@@ -14,6 +14,7 @@ type EmailConfig struct {
 }
 type ServicesConfig struct {
 	Port                  string
+	FileUrl string
 	AuthUrl               string
 	CourseUrl             string
 	CategoryUrl           string
