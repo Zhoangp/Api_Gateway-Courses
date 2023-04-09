@@ -2,7 +2,7 @@ package routes
 
 import (
 	"context"
-	"github.com/Zhoangp/Api_Gateway-Courses/internal/auth/pb"
+	"github.com/Zhoangp/Api_Gateway-Courses/internal/auth-service/pb"
 	"github.com/gin-gonic/gin"
 )
 

@@ -44,7 +44,7 @@ func (m *middleareManager) RequiredAuth() gin.HandlerFunc {
 			panic(err)
 		}
 
-		//user, err := m.userRepo.FindDataWithCondition(map[string]any{"email": payload.Email})
+		//user-service, err := m.userRepo.FindDataWithCondition(map[string]any{"email": payload.Email})
 		//if err != nil {
 		//	panic(err)
 		//}

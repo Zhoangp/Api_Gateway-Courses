@@ -1,9 +1,9 @@
-package auth
+package auth_service
 
 import (
 	"fmt"
 	"github.com/Zhoangp/Api_Gateway-Courses/config"
-	"github.com/Zhoangp/Api_Gateway-Courses/internal/auth/pb"
+	"github.com/Zhoangp/Api_Gateway-Courses/internal/auth-service/pb"
 	"google.golang.org/grpc"
 )
 

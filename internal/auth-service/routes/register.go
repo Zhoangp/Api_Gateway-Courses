@@ -2,7 +2,7 @@ package routes
 
 import (
 	"context"
-	"github.com/Zhoangp/Api_Gateway-Courses/internal/auth/pb"
+	"github.com/Zhoangp/Api_Gateway-Courses/internal/auth-service/pb"
 	"github.com/gin-gonic/gin"
 )
 
@@ -38,5 +38,5 @@ func Register(ctx *gin.Context, c pb.AuthServiceClient) {
 		panic(res.Error)
 	}
 
-	ctx.JSON(200, gin.H{"Message": "Create user successfully"})
+	ctx.JSON(200, gin.H{"Message": "Create user-service successfully"})
 }

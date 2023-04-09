@@ -1,9 +1,9 @@
-package user
+package user_service
 
 import (
 	"fmt"
 	"github.com/Zhoangp/Api_Gateway-Courses/config"
-	"github.com/Zhoangp/Api_Gateway-Courses/internal/user/pb"
+	"github.com/Zhoangp/Api_Gateway-Courses/internal/user-service/pb"
 	"google.golang.org/grpc"
 )
 

@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"github.com/Zhoangp/Api_Gateway-Courses/internal/user/pb"
+	"github.com/Zhoangp/Api_Gateway-Courses/internal/user-service/pb"
 	"github.com/Zhoangp/Api_Gateway-Courses/pkg/common"
 	"github.com/gin-gonic/gin"
 )
@@ -37,5 +37,5 @@ func Update(ctx *gin.Context, client pb.UserServiceClient) {
 	if res.Error != nil {
 		panic(res.Error)
 	}
-	ctx.JSON(200, gin.H{"Message": "Update user successfully"})
+	ctx.JSON(200, gin.H{"Message": "Update user-service successfully"})
 }

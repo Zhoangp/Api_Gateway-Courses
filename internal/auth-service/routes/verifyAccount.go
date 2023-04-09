@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"github.com/Zhoangp/Api_Gateway-Courses/internal/auth/pb"
+	"github.com/Zhoangp/Api_Gateway-Courses/internal/auth-service/pb"
 	"github.com/gin-gonic/gin"
 )
 func VerifyAccount(ctx *gin.Context, client pb.AuthServiceClient) {

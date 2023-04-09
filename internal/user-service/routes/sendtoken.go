@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"github.com/Zhoangp/Api_Gateway-Courses/internal/user/pb"
+	"github.com/Zhoangp/Api_Gateway-Courses/internal/user-service/pb"
 	"github.com/gin-gonic/gin"
 )
 

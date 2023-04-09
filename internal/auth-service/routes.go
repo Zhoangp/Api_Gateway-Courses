@@ -1,8 +1,8 @@
-package auth
+package auth_service
 
 import (
 	"github.com/Zhoangp/Api_Gateway-Courses/config"
-	"github.com/Zhoangp/Api_Gateway-Courses/internal/auth/routes"
+	"github.com/Zhoangp/Api_Gateway-Courses/internal/auth-service/routes"
 	"github.com/Zhoangp/Api_Gateway-Courses/internal/middleware"
 	"github.com/gin-gonic/gin"
 )

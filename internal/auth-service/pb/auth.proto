@@ -1,6 +1,6 @@
 syntax = "proto3";
 package auth;
-option go_package="github.com/Zhoangp/Api_Gateway-Courses/internal/auth/pb";
+option go_package="github.com/Zhoangp/Api_Gateway-Courses/internal/auth-service/pb";
 
 import "internal/error/pb/error.proto";
 

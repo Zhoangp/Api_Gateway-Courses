@@ -1,9 +1,9 @@
-package user
+package user_service
 
 import (
 	"github.com/Zhoangp/Api_Gateway-Courses/config"
 	"github.com/Zhoangp/Api_Gateway-Courses/internal/middleware"
-	"github.com/Zhoangp/Api_Gateway-Courses/internal/user/routes"
+	"github.com/Zhoangp/Api_Gateway-Courses/internal/user-service/routes"
 	"github.com/gin-gonic/gin"
 )
 

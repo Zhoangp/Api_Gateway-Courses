@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.28.1
 // 	protoc        v3.21.12
-// source: internal/auth/pb/auth.proto
+// source: internal/auth-service/pb/auth-service.proto
 
 package pb
 
@@ -715,36 +715,36 @@ func file_internal_auth_pb_auth_proto_rawDescGZIP() []byte {
 
 var file_internal_auth_pb_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_internal_auth_pb_auth_proto_goTypes = []interface{}{
-	(*RegisterRequest)(nil),       // 0: auth.RegisterRequest
-	(*RegisterResponse)(nil),      // 1: auth.RegisterResponse
-	(*LoginRequest)(nil),          // 2: auth.LoginRequest
-	(*LoginResponse)(nil),         // 3: auth.LoginResponse
-	(*ValidateRequest)(nil),       // 4: auth.ValidateRequest
-	(*ValidateResponse)(nil),      // 5: auth.ValidateResponse
-	(*NewTokenRequest)(nil),       // 6: auth.NewTokenRequest
-	(*NewTokenResponse)(nil),      // 7: auth.NewTokenResponse
-	(*VerifyAccountRequest)(nil),  // 8: auth.VerifyAccountRequest
-	(*VerifyAccountResponse)(nil), // 9: auth.VerifyAccountResponse
+	(*RegisterRequest)(nil),       // 0: auth-service.RegisterRequest
+	(*RegisterResponse)(nil),      // 1: auth-service.RegisterResponse
+	(*LoginRequest)(nil),          // 2: auth-service.LoginRequest
+	(*LoginResponse)(nil),         // 3: auth-service.LoginResponse
+	(*ValidateRequest)(nil),       // 4: auth-service.ValidateRequest
+	(*ValidateResponse)(nil),      // 5: auth-service.ValidateResponse
+	(*NewTokenRequest)(nil),       // 6: auth-service.NewTokenRequest
+	(*NewTokenResponse)(nil),      // 7: auth-service.NewTokenResponse
+	(*VerifyAccountRequest)(nil),  // 8: auth-service.VerifyAccountRequest
+	(*VerifyAccountResponse)(nil), // 9: auth-service.VerifyAccountResponse
 	(*pb.ErrorResponse)(nil),      // 10: error.ErrorResponse
 }
 var file_internal_auth_pb_auth_proto_depIdxs = []int32{
-	10, // 0: auth.RegisterResponse.error:type_name -> error.ErrorResponse
-	10, // 1: auth.LoginResponse.error:type_name -> error.ErrorResponse
-	10, // 2: auth.ValidateResponse.error:type_name -> error.ErrorResponse
-	10, // 3: auth.NewTokenResponse.error:type_name -> error.ErrorResponse
-	10, // 4: auth.VerifyAccountResponse.error:type_name -> error.ErrorResponse
-	0,  // 5: auth.AuthService.Register:input_type -> auth.RegisterRequest
-	2,  // 6: auth.AuthService.Login:input_type -> auth.LoginRequest
-	4,  // 7: auth.AuthService.Validate:input_type -> auth.ValidateRequest
-	6,  // 8: auth.AuthService.NewToken:input_type -> auth.NewTokenRequest
-	8,  // 9: auth.AuthService.VerifyAccount:input_type -> auth.VerifyAccountRequest
-	8,  // 10: auth.AuthService.GetTokenVeriryAccount:input_type -> auth.VerifyAccountRequest
-	1,  // 11: auth.AuthService.Register:output_type -> auth.RegisterResponse
-	3,  // 12: auth.AuthService.Login:output_type -> auth.LoginResponse
-	5,  // 13: auth.AuthService.Validate:output_type -> auth.ValidateResponse
-	7,  // 14: auth.AuthService.NewToken:output_type -> auth.NewTokenResponse
-	9,  // 15: auth.AuthService.VerifyAccount:output_type -> auth.VerifyAccountResponse
-	9,  // 16: auth.AuthService.GetTokenVeriryAccount:output_type -> auth.VerifyAccountResponse
+	10, // 0: auth-service.RegisterResponse.error:type_name -> error.ErrorResponse
+	10, // 1: auth-service.LoginResponse.error:type_name -> error.ErrorResponse
+	10, // 2: auth-service.ValidateResponse.error:type_name -> error.ErrorResponse
+	10, // 3: auth-service.NewTokenResponse.error:type_name -> error.ErrorResponse
+	10, // 4: auth-service.VerifyAccountResponse.error:type_name -> error.ErrorResponse
+	0,  // 5: auth-service.AuthService.Register:input_type -> auth-service.RegisterRequest
+	2,  // 6: auth-service.AuthService.Login:input_type -> auth-service.LoginRequest
+	4,  // 7: auth-service.AuthService.Validate:input_type -> auth-service.ValidateRequest
+	6,  // 8: auth-service.AuthService.NewToken:input_type -> auth-service.NewTokenRequest
+	8,  // 9: auth-service.AuthService.VerifyAccount:input_type -> auth-service.VerifyAccountRequest
+	8,  // 10: auth-service.AuthService.GetTokenVeriryAccount:input_type -> auth-service.VerifyAccountRequest
+	1,  // 11: auth-service.AuthService.Register:output_type -> auth-service.RegisterResponse
+	3,  // 12: auth-service.AuthService.Login:output_type -> auth-service.LoginResponse
+	5,  // 13: auth-service.AuthService.Validate:output_type -> auth-service.ValidateResponse
+	7,  // 14: auth-service.AuthService.NewToken:output_type -> auth-service.NewTokenResponse
+	9,  // 15: auth-service.AuthService.VerifyAccount:output_type -> auth-service.VerifyAccountResponse
+	9,  // 16: auth-service.AuthService.GetTokenVeriryAccount:output_type -> auth-service.VerifyAccountResponse
 	11, // [11:17] is the sub-list for method output_type
 	5,  // [5:11] is the sub-list for method input_type
 	5,  // [5:5] is the sub-list for extension type_name
