@@ -1,0 +1,61 @@
+syntax = "proto3";
+package user;
+option go_package = "./pb";
+import "services/error/pb/error.proto";
+
+service UserService {
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse);
+  rpc GetTokenResetPass(GetTokenResetPassRequest) returns (GetTokenResetPassResponse);
+  rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse);
+  rpc UpdateAvatar(UpdateAvatarRequest) returns (UpdateAvatarResponse);
+}
+message UpdateUserRequest {
+  uint32 id = 1;
+  string firstName = 2;
+  string lastName = 3;
+  string email = 4;
+  string password = 5;
+  string phoneNumber = 6;
+  string address = 7;
+  string role = 8;
+  bool is_instructor = 9;
+  Picture avt = 10;
+
+}
+message Picture {
+  uint32 id = 1;
+  string url = 2;
+  string width = 3;
+  string height = 4;
+}
+message UpdateUserResponse {
+  error.ErrorResponse error = 1;
+}
+message  GetTokenResetPassRequest {
+  string email = 1;
+}
+message GetTokenResetPassResponse {
+  error.ErrorResponse error = 1;
+}
+message ChangePasswordRequest {
+  string password = 1;
+  string new_password = 2;
+  string email = 3;
+}
+message ChangePasswordResponse {
+  error.ErrorResponse error = 1;
+}
+
+message UpdateAvatarRequest {
+  string fileName = 1;
+  int64 size = 2;
+  bytes content = 3;
+  string folder = 4;
+  string email = 5;
+  string width = 6;
+  string height = 7;
+}
+message UpdateAvatarResponse {
+  string url = 1;
+  error.ErrorResponse error = 2;
+}

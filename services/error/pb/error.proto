@@ -1,0 +1,8 @@
+syntax = "proto3";
+package error;
+option go_package="github.com/Zhoangp/Api_Gateway-Courses/services/error/pb";
+
+message ErrorResponse {
+  int64 code = 1;
+  string message = 2;
+}

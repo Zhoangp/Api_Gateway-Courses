@@ -2,10 +2,10 @@ package main
 
 import (
 	"github.com/Zhoangp/Api_Gateway-Courses/config"
-	"github.com/Zhoangp/Api_Gateway-Courses/internal/auth-service"
-	"github.com/Zhoangp/Api_Gateway-Courses/internal/file-service"
-	"github.com/Zhoangp/Api_Gateway-Courses/internal/middleware"
-	"github.com/Zhoangp/Api_Gateway-Courses/internal/user-service"
+	"github.com/Zhoangp/Api_Gateway-Courses/services/auth"
+	"github.com/Zhoangp/Api_Gateway-Courses/services/file-service"
+	"github.com/Zhoangp/Api_Gateway-Courses/services/middleware"
+	"github.com/Zhoangp/Api_Gateway-Courses/services/user"
 	"github.com/gin-gonic/gin"
 	"log"
 )
@@ -19,8 +19,8 @@ func main() {
 	r := gin.Default()
 	r.Use(mdware.Recover())
 
-	_ = *auth_service.RegisterAuthRoutes(r, cf)
-	user_service.RegisterUserRoutes(r, cf)
+	_ = *auth.RegisterAuthRoutes(r, cf)
+	user.RegisterUserRoutes(r, cf)
 	file_service.RegisterFileRoute(r, cf)
 	r.Run(cf.Services.Port)
 }

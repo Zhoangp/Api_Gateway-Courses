@@ -1,0 +1,21 @@
+syntax = "proto3";
+package file;
+option go_package = "./pb";
+import "services/error/pb/error.proto";
+
+service FileService{
+rpc UploadFile(UploadFileRequest) returns (UploadFileResponse);
+}
+message UploadFileRequest {
+  string fileName = 1;
+  int64 size = 2;
+  bytes content = 3;
+  string folder = 4;
+}
+message UploadFileResponse {
+  string url = 1;
+  error.ErrorResponse error = 2;
+}
+
+
+
