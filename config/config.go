@@ -6,6 +6,7 @@ import (
 
 type Config struct {
 	Services ServicesConfig
+	Mysql   MysqlConfig
 	Email    EmailConfig
 }
 type EmailConfig struct {
@@ -21,8 +22,16 @@ type ServicesConfig struct {
 	TopicUrl              string
 	Secret                string
 	UserUrl               string
+	MigrationURL 		  string
 	AccessTokenExpiredIn  int
 	RefreshTokenExpiredIn int
+}
+type MysqlConfig struct {
+	Host     string
+	Port     string
+	User     string
+	Password string
+	DBName   string
 }
 
 func LoadConfig(fileName string) (*Config, error) {
