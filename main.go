@@ -7,6 +7,7 @@ import (
 	file_service "github.com/Zhoangp/Api_Gateway-Courses/services/file-service"
 	"github.com/Zhoangp/Api_Gateway-Courses/services/middleware"
 	"github.com/Zhoangp/Api_Gateway-Courses/services/user"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"log"
 	"os"
@@ -15,7 +16,7 @@ import (
 func main() {
 	env := os.Getenv("ENV")
 	fileName := "config/config-local.yml"
-	if env == "app"{
+	if env == "app" {
 		fileName = "config/config-app.yml"
 	}
 	cf, err := config.LoadConfig(fileName)
@@ -27,7 +28,11 @@ func main() {
 	}
 	mdware := middleware.NewMiddlewareManager(cf)
 	r := gin.Default()
-	r.Use(mdware.Recover())
+	config := cors.DefaultConfig()
+	config.AllowOrigins = []string{"*"}
+	config.AllowHeaders = []string{"authorization", "content-type"}
+	config.AllowFiles = true
+	r.Use(cors.New(config), mdware.Recover())
 
 	_ = *auth.RegisterAuthRoutes(r, cf)
 	user.RegisterUserRoutes(r, cf)
