@@ -6,16 +6,16 @@ import (
 	"github.com/Zhoangp/Api_Gateway-Courses/services/user/pb"
 	"github.com/gin-gonic/gin"
 	"image"
-	"strconv"
-	"time"
+	"strings"
 )
 
 func UpdateAvatar(c *gin.Context, client pb.UserServiceClient) {
+
 	email := c.MustGet("emailUser").(string)
 	fileHeader, err := c.FormFile("file")
 	if err != nil {
+		fmt.Println(err)
 		panic(err)
-
 	}
 
 	folder := c.DefaultPostForm("folder", "img")
@@ -30,13 +30,13 @@ func UpdateAvatar(c *gin.Context, client pb.UserServiceClient) {
 		panic(err)
 	}
 	res, err := client.UpdateAvatar(c, &pb.UpdateAvatarRequest{
-		FileName: "avatar-" + strconv.Itoa(int(time.Now().UnixMicro())),
+		FileName: "avatar-" + strings.Split(email, "@")[0], //strconv.Itoa(int(time.Now().UnixMicro())),
 		Size:     fileHeader.Size,
 		Content:  dataBytes,
 		Folder:   folder,
 		Email:    email,
-		Width:   "250px",
-		Height:"250px",
+		Width:    "250px",
+		Height:   "250px",
 	})
 	if err != nil {
 		fmt.Println(err)
@@ -60,4 +60,3 @@ func getImageDemension(dataBytes []byte) (int, int, error) {
 
 	return img.Bounds().Dx(), img.Bounds().Dy(), nil
 }
-

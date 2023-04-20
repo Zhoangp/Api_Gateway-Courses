@@ -2,6 +2,7 @@ package routes
 
 import (
 	"context"
+	"fmt"
 	"github.com/Zhoangp/Api_Gateway-Courses/services/auth/pb"
 	"github.com/gin-gonic/gin"
 )
@@ -27,6 +28,7 @@ func Login(ctx *gin.Context, c pb.AuthServiceClient) {
 	if res.Error != nil {
 		panic(res.Error)
 	}
+	fmt.Println(res)
 	ctx.SetCookie("refresh_token", res.RefreshToken, 3600*720, "/", "localhost", false, true)
 	ctx.JSON(200, &res)
 

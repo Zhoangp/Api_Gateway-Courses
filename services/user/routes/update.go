@@ -9,12 +9,12 @@ import (
 
 type updateRequest struct {
 	common.SQLModel
-	Email     string `json:"email" gorm:"column:email"`
-	Password  string `json:"password" gorm:"column:password"`
-	FirstName string `json:"firstName" gorm:"column:firstName"`
-	LastName  string `json:"lastName" gorm:"column:lastName"`
-	Phone     string `json:"phone" gorm:"column:phoneNumber"`
-	Address   string `json:"address" gorm:"column:address"`
+	Email     string `json:"email"`
+	Password  string `json:"password"`
+	FirstName string `json:"firstName"`
+	LastName  string `json:"lastName"`
+	Phone     string `json:"phone"`
+	Address   string `json:"address"`
 }
 
 func Update(ctx *gin.Context, client pb.UserServiceClient) {

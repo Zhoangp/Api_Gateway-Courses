@@ -2,6 +2,7 @@ syntax = "proto3";
 package auth;
 option go_package="github.com/Zhoangp/Api_Gateway-Courses/services/auth/pb";
 import "services/error/pb/error.proto";
+import "services/user/pb/user.proto";
 
 service AuthService {
   rpc Register(RegisterRequest)returns(RegisterResponse);
@@ -31,10 +32,12 @@ message LoginRequest {
   string password = 2;
 }
 message LoginResponse {
-  string accessToken = 1;
-  string refreshToken = 2;
-  uint32 expiresAt = 3;
-  error.ErrorResponse error = 4;
+  user.User information = 1;
+  string accessToken = 2;
+  string refreshToken = 3;
+  uint32 expiresAt = 4;
+  string tokenType = 5;
+  error.ErrorResponse error = 6;
 }
 
 message ValidateRequest {

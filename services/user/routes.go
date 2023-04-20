@@ -20,6 +20,9 @@ func RegisterUserRoutes(r *gin.Engine, c *config.Config) {
 	routes.PUT("/", svc.UpdateUser)
 	routes.PATCH("/avatar", svc.UpdateAvatar)
 
+	routes2 := r.Group("/instructor")
+	routes2.Use(mdware.RequiredAuth())
+	routes2.POST("/", svc.NewInstructor)
 
 }
 func (svc *ServiceClient) UpdateUser(ctx *gin.Context) {
@@ -33,4 +36,7 @@ func (svc *ServiceClient) ResetPassword(ctx *gin.Context) {
 }
 func (svc *ServiceClient) UpdateAvatar(ctx *gin.Context) {
 	routes.UpdateAvatar(ctx, svc.Client)
+}
+func (svc *ServiceClient) NewInstructor(ctx *gin.Context) {
+	routes.NewInstructor(ctx, svc.Client)
 }

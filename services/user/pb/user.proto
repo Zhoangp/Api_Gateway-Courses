@@ -1,6 +1,6 @@
 syntax = "proto3";
 package user;
-option go_package = "./pb";
+option go_package = "github.com/Zhoangp/Api_Gateway-Courses/services/user/pb";
 import "services/error/pb/error.proto";
 
 service UserService {
@@ -8,6 +8,16 @@ service UserService {
   rpc GetTokenResetPass(GetTokenResetPassRequest) returns (GetTokenResetPassResponse);
   rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse);
   rpc UpdateAvatar(UpdateAvatarRequest) returns (UpdateAvatarResponse);
+  rpc NewInstructor(NewInstructorRequest) returns (NewInstructorResponse);
+}
+message User {
+  string firstName = 1;
+  string lastName = 2;
+  string email = 3;
+  string phoneNumber = 4;
+  string address = 5;
+  Picture avatar = 6;
+  string lastLogin = 7;
 }
 message UpdateUserRequest {
   uint32 id = 1;
@@ -58,4 +68,14 @@ message UpdateAvatarRequest {
 message UpdateAvatarResponse {
   string url = 1;
   error.ErrorResponse error = 2;
+}
+message NewInstructorRequest {
+  string email = 1;
+  string website = 2;
+  string  linkedin = 3;
+  string youtube = 4;
+  string bio = 5;
+}
+message NewInstructorResponse {
+  error.ErrorResponse error = 1;
 }
