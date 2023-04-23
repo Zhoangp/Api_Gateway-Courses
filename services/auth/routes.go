@@ -7,11 +7,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func RegisterAuthRoutes(r *gin.Engine, c *config.Config) *ServiceClient {
+func RegisterAuthRoutes(r *gin.Engine, c *config.Config) {
+	//define auth client
 	svc := &ServiceClient{
 		Client: InitServiceClient(c),
 	}
 
+	//create auth routes
 	routes := r.Group("/auth")
 	routes.POST("/login", svc.Login)
 	routes.POST("/register", svc.Register)
@@ -21,8 +23,6 @@ func RegisterAuthRoutes(r *gin.Engine, c *config.Config) *ServiceClient {
 
 	routes.Use(mdware.RequireVerifyToken())
 	routes.PATCH("/account/:token", svc.VerifyAccount)
-
-	return svc
 }
 
 func (svc *ServiceClient) Register(ctx *gin.Context) {
@@ -39,5 +39,5 @@ func (sv *ServiceClient) VerifyAccount(ctx *gin.Context) {
 	routes.VerifyAccount(ctx, sv.Client)
 }
 func (svc *ServiceClient) GetTokenVerifyAccount(ctx *gin.Context) {
-	routes.GetTokenVerifyAccount(ctx,svc.Client)
+	routes.GetTokenVerifyAccount(ctx, svc.Client)
 }
