@@ -1,12 +1,12 @@
 package middleware
 
 import (
-	"github.com/Zhoangp/Api_Gateway-Courses/services/error/pb"
 	"github.com/Zhoangp/Api_Gateway-Courses/pkg/common"
+	"github.com/Zhoangp/Api_Gateway-Courses/services/error/pb"
 	"github.com/gin-gonic/gin"
 )
 
-func (m *middleareManager) Recover() gin.HandlerFunc {
+func (m *MiddleareManager) Recover() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		defer func() {
 			if err := recover(); err != nil {

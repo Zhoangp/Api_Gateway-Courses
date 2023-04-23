@@ -46,10 +46,10 @@ func main() {
 	r.Use(cors.New(config), mdware.Recover())
 
 	//define routers for each service
-	auth.RegisterAuthRoutes(r, cf)
-	user.RegisterUserRoutes(r, cf)
-	file_service.RegisterFileRoute(r, cf)
-	course.RegisterCourseService(r, cf)
+	auth.RegisterAuthRoutes(r, cf, mdware)
+	user.RegisterUserRoutes(r, cf, mdware)
+	file_service.RegisterFileRoute(r, cf, mdware)
+	course.RegisterCourseService(r, cf, mdware)
 
 	r.Run(cf.Services.Port)
 }

@@ -16,7 +16,7 @@ func extractToken(token string) (string, error) {
 	}
 	return parts[1], nil
 }
-func (m *middleareManager) RequireVerifyToken() gin.HandlerFunc {
+func (m *MiddleareManager) RequireVerifyToken() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		token := (c.Param("token"))
 		payload, err := utils.ValidateJWT(token, m.cfg)
@@ -30,7 +30,7 @@ func (m *middleareManager) RequireVerifyToken() gin.HandlerFunc {
 
 	}
 }
-func (m *middleareManager) RequiredAuth() gin.HandlerFunc {
+func (m *MiddleareManager) RequiredAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		s := c.Request.Header.Get("Authorization")
 
@@ -50,7 +50,7 @@ func (m *middleareManager) RequiredAuth() gin.HandlerFunc {
 		//}
 
 		if payload.Verified {
-			panic(common.NewCustomError(errors.New("This account has not been verified!"),"This account has not been verified!"))
+			panic(common.NewCustomError(errors.New("This account has not been verified!"), "This account has not been verified!"))
 		}
 		c.Set("emailUser", payload.Email)
 

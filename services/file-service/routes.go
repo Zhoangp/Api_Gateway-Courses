@@ -7,14 +7,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func RegisterFileRoute(r *gin.Engine, ctx *config.Config) {
+func RegisterFileRoute(r *gin.Engine, ctx *config.Config, middleware *middleware.MiddleareManager) {
 	svc := ServiceClient{
 		Client: InitServiceClient(ctx),
 	}
-	mdware := middleware.NewMiddlewareManager(ctx)
 
 	route := r.Group("/file")
-	route.Use(mdware.RequiredAuth())
+	route.Use(middleware.RequiredAuth())
 	route.POST("", svc.Upload)
 }
 func (svc *ServiceClient) Upload(ctx *gin.Context) {

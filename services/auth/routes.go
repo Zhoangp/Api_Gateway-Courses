@@ -2,42 +2,23 @@ package auth
 
 import (
 	"github.com/Zhoangp/Api_Gateway-Courses/config"
-	"github.com/Zhoangp/Api_Gateway-Courses/services/auth/routes"
+	"github.com/Zhoangp/Api_Gateway-Courses/services/auth/internal/delivery/http"
 	"github.com/Zhoangp/Api_Gateway-Courses/services/middleware"
 	"github.com/gin-gonic/gin"
 )
 
-func RegisterAuthRoutes(r *gin.Engine, c *config.Config) {
+func RegisterAuthRoutes(r *gin.Engine, c *config.Config, middleware *middleware.MiddleareManager) {
 	//define auth client
-	svc := &ServiceClient{
-		Client: InitServiceClient(c),
-	}
+	client := NewAuthServiceClient(c)
+	authHandler := http.NewAuthHandler(c, client)
 
 	//create auth routes
 	routes := r.Group("/auth")
-	routes.POST("/login", svc.Login)
-	routes.POST("/register", svc.Register)
-	routes.GET("/token", svc.NewToken)
-	routes.POST("/account", svc.GetTokenVerifyAccount)
-	mdware := middleware.NewMiddlewareManager(c)
+	routes.POST("/login", authHandler.Login())
+	routes.POST("/register", authHandler.Register())
+	routes.GET("/token", authHandler.NewToken())
+	routes.POST("/account", authHandler.GetTokenVerifyAccount())
 
-	routes.Use(mdware.RequireVerifyToken())
-	routes.PATCH("/account/:token", svc.VerifyAccount)
-}
-
-func (svc *ServiceClient) Register(ctx *gin.Context) {
-	routes.Register(ctx, svc.Client)
-
-}
-func (svc *ServiceClient) Login(ctx *gin.Context) {
-	routes.Login(ctx, svc.Client)
-}
-func (svc *ServiceClient) NewToken(ctx *gin.Context) {
-	routes.NewToken(ctx, svc.Client)
-}
-func (sv *ServiceClient) VerifyAccount(ctx *gin.Context) {
-	routes.VerifyAccount(ctx, sv.Client)
-}
-func (svc *ServiceClient) GetTokenVerifyAccount(ctx *gin.Context) {
-	routes.GetTokenVerifyAccount(ctx, svc.Client)
+	routes.Use(middleware.RequireVerifyToken())
+	routes.PATCH("/account/:token", authHandler.VerifyAccount())
 }

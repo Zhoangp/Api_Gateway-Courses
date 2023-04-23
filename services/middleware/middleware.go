@@ -2,10 +2,10 @@ package middleware
 
 import "github.com/Zhoangp/Api_Gateway-Courses/config"
 
-type middleareManager struct {
+type MiddleareManager struct {
 	cfg *config.Config
 }
 
-func NewMiddlewareManager(cfg *config.Config) *middleareManager {
-	return &middleareManager{cfg}
+func NewMiddlewareManager(cfg *config.Config) *MiddleareManager {
+	return &MiddleareManager{cfg}
 }
