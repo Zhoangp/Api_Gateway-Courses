@@ -8,10 +8,10 @@ import (
 )
 
 func RegisterCourseService(r *gin.Engine, cf *config.Config, middleware *middleware.MiddleareManager) {
-
 	client := NewCourseServiceClient(cf)
 	hdlCourse := http.NewCourseHandler(cf, client)
 	router := r.Group("/courses")
 	router.Use(middleware.RequiredAuth())
-	router.POST("", hdlCourse.GetCoursesWithPagination())
+	router.GET("", hdlCourse.GetCoursesWithPagination())
+	router.GET("", hdlCourse.GetCourses())
 }
