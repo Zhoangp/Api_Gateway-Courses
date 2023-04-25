@@ -2,13 +2,14 @@ package common
 
 type Paging struct {
 	Limit int `json:"pageSize" form:"pageSize"`
-	Page int `json:"page" form:"page"`
+	Page  int `json:"page" form:"page"`
 }
+
 func (p *Paging) FullFill() {
 	if p.Page <= 0 {
-		p.Page = 1
+		p.Page = 0
 	}
 	if p.Limit <= 0 {
-		p.Limit = 1
+		p.Limit = 0
 	}
 }

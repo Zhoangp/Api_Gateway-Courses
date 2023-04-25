@@ -10,9 +10,11 @@ import (
 func (hdl CourseHandler) GetCourses() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		var a common.Paging
-		a.Limit = 0
-		a.Page = 0
-		res, err := hdl.client.GetCoursesWithPagination(ctx, &pb.GetCoursesPaginationRequest{
+		if err := ctx.ShouldBind(&a); err != nil {
+			panic(common.ErrBadRequest(err))
+		}
+		a.FullFill()
+		res, err := hdl.client.GetCourses(ctx, &pb.GetCoursesRequest{
 			Page:     int32(a.Page),
 			PageSize: int32(a.Limit),
 		})

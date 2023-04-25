@@ -22,7 +22,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CourseServiceClient interface {
-	GetCoursesWithPagination(ctx context.Context, in *GetCoursesPaginationRequest, opts ...grpc.CallOption) (*GetCoursesPaginationResponse, error)
+	GetCourses(ctx context.Context, in *GetCoursesRequest, opts ...grpc.CallOption) (*GetCoursesResponse, error)
+	GetCourse(ctx context.Context, in *GetCourseRequest, opts ...grpc.CallOption) (*GetCourseResponse, error)
 }
 
 type courseServiceClient struct {
@@ -33,9 +34,18 @@ func NewCourseServiceClient(cc grpc.ClientConnInterface) CourseServiceClient {
 	return &courseServiceClient{cc}
 }
 
-func (c *courseServiceClient) GetCoursesWithPagination(ctx context.Context, in *GetCoursesPaginationRequest, opts ...grpc.CallOption) (*GetCoursesPaginationResponse, error) {
-	out := new(GetCoursesPaginationResponse)
-	err := c.cc.Invoke(ctx, "/course.CourseService/GetCoursesWithPagination", in, out, opts...)
+func (c *courseServiceClient) GetCourses(ctx context.Context, in *GetCoursesRequest, opts ...grpc.CallOption) (*GetCoursesResponse, error) {
+	out := new(GetCoursesResponse)
+	err := c.cc.Invoke(ctx, "/course.CourseService/GetCourses", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *courseServiceClient) GetCourse(ctx context.Context, in *GetCourseRequest, opts ...grpc.CallOption) (*GetCourseResponse, error) {
+	out := new(GetCourseResponse)
+	err := c.cc.Invoke(ctx, "/course.CourseService/GetCourse", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -46,7 +56,8 @@ func (c *courseServiceClient) GetCoursesWithPagination(ctx context.Context, in *
 // All implementations must embed UnimplementedCourseServiceServer
 // for forward compatibility
 type CourseServiceServer interface {
-	GetCoursesWithPagination(context.Context, *GetCoursesPaginationRequest) (*GetCoursesPaginationResponse, error)
+	GetCourses(context.Context, *GetCoursesRequest) (*GetCoursesResponse, error)
+	GetCourse(context.Context, *GetCourseRequest) (*GetCourseResponse, error)
 	mustEmbedUnimplementedCourseServiceServer()
 }
 
@@ -54,8 +65,11 @@ type CourseServiceServer interface {
 type UnimplementedCourseServiceServer struct {
 }
 
-func (UnimplementedCourseServiceServer) GetCoursesWithPagination(context.Context, *GetCoursesPaginationRequest) (*GetCoursesPaginationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCoursesWithPagination not implemented")
+func (UnimplementedCourseServiceServer) GetCourses(context.Context, *GetCoursesRequest) (*GetCoursesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCourses not implemented")
+}
+func (UnimplementedCourseServiceServer) GetCourse(context.Context, *GetCourseRequest) (*GetCourseResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCourse not implemented")
 }
 func (UnimplementedCourseServiceServer) mustEmbedUnimplementedCourseServiceServer() {}
 
@@ -70,20 +84,38 @@ func RegisterCourseServiceServer(s grpc.ServiceRegistrar, srv CourseServiceServe
 	s.RegisterService(&CourseService_ServiceDesc, srv)
 }
 
-func _CourseService_GetCoursesWithPagination_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCoursesPaginationRequest)
+func _CourseService_GetCourses_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCoursesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CourseServiceServer).GetCoursesWithPagination(ctx, in)
+		return srv.(CourseServiceServer).GetCourses(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/course.CourseService/GetCoursesWithPagination",
+		FullMethod: "/course.CourseService/GetCourses",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CourseServiceServer).GetCoursesWithPagination(ctx, req.(*GetCoursesPaginationRequest))
+		return srv.(CourseServiceServer).GetCourses(ctx, req.(*GetCoursesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CourseService_GetCourse_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCourseRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CourseServiceServer).GetCourse(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/course.CourseService/GetCourse",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CourseServiceServer).GetCourse(ctx, req.(*GetCourseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -96,8 +128,12 @@ var CourseService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*CourseServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetCoursesWithPagination",
-			Handler:    _CourseService_GetCoursesWithPagination_Handler,
+			MethodName: "GetCourses",
+			Handler:    _CourseService_GetCourses_Handler,
+		},
+		{
+			MethodName: "GetCourse",
+			Handler:    _CourseService_GetCourse_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

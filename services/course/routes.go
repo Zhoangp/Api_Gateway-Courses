@@ -12,6 +12,6 @@ func RegisterCourseService(r *gin.Engine, cf *config.Config, middleware *middlew
 	hdlCourse := http.NewCourseHandler(cf, client)
 	router := r.Group("/courses")
 	router.Use(middleware.RequiredAuth())
-	router.GET("", hdlCourse.GetCoursesWithPagination())
 	router.GET("", hdlCourse.GetCourses())
+	router.GET("/:id", hdlCourse.GetCourse())
 }

@@ -2,7 +2,8 @@ syntax = "proto3";
 package course;
 option go_package = "github.com/Zhoangp/Api_Gateway-Courses/services/course/pb";
 service CourseService {
-  rpc GetCoursesWithPagination(GetCoursesPaginationRequest) returns (GetCoursesPaginationResponse);
+  rpc GetCourses(GetCoursesRequest) returns (GetCoursesResponse);
+  rpc GetCourse(GetCourseRequest) returns (GetCourseResponse);
 }
 import "services/error/pb/error.proto";
 
@@ -12,6 +13,19 @@ message Image {
   string url = 1;
   string width = 2;
   string height = 3;
+}
+
+message Lecture {
+  string id = 1;
+  string title = 2;
+  string content = 3;
+  string status = 4;
+}
+message Section {
+  string id = 1;
+  string title = 2;
+  int32 numberOfLectures = 3;
+  repeated Lecture lectures = 4;
 }
 message Course {
   string id = 1;
@@ -26,13 +40,22 @@ message Course {
   string status = 10 ;
   float rating = 11 ;
   Image thumbnail = 12;
+  repeated Section sections = 13;
 
 }
-message GetCoursesPaginationRequest {
+message GetCoursesRequest {
   int32 page = 1;
   int32 pageSize = 2;
 }
-message GetCoursesPaginationResponse {
+message GetCoursesResponse {
   repeated Course courses = 1;
+  error.ErrorResponse error = 2;
+}
+
+message GetCourseRequest {
+  string id = 1;
+}
+message GetCourseResponse {
+  Course course = 1;
   error.ErrorResponse error = 2;
 }
