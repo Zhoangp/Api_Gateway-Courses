@@ -14,12 +14,16 @@ message Image {
   string width = 2;
   string height = 3;
 }
-
+message Resource {
+  string url = 1;
+  string duration = 2;
+}
 message Lecture {
   string id = 1;
   string title = 2;
   string content = 3;
   string status = 4;
+  Resource video = 5;
 }
 message Section {
   string id = 1;
