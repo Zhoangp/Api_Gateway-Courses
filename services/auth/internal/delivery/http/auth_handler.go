@@ -1,7 +1,6 @@
 package http
 
 import (
-	"fmt"
 	"github.com/Zhoangp/Api_Gateway-Courses/config"
 	"github.com/Zhoangp/Api_Gateway-Courses/services/auth/internal/model"
 	"github.com/Zhoangp/Api_Gateway-Courses/services/auth/pb"
@@ -54,7 +53,6 @@ func (hdl AuthHandler) Login() gin.HandlerFunc {
 		if res.Error != nil {
 			panic(res.Error)
 		}
-		fmt.Println(res)
 		ctx.SetCookie("refresh_token", res.RefreshToken, 3600*720, "/", "localhost", false, true)
 		ctx.JSON(200, &res)
 

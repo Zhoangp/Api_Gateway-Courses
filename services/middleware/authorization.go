@@ -52,8 +52,8 @@ func (m *MiddleareManager) RequiredAuth() gin.HandlerFunc {
 		if payload.Verified {
 			panic(common.NewCustomError(errors.New("This account has not been verified!"), "This account has not been verified!"))
 		}
+		c.Set("userId", payload.Id)
 		c.Set("emailUser", payload.Email)
-
 		c.Next()
 	}
 }
