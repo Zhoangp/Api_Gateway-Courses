@@ -4,6 +4,7 @@ import (
 	"github.com/Zhoangp/Api_Gateway-Courses/config"
 	"github.com/Zhoangp/Api_Gateway-Courses/pkg/utils"
 	"github.com/Zhoangp/Api_Gateway-Courses/services/auth"
+	"github.com/Zhoangp/Api_Gateway-Courses/services/cart"
 	"github.com/Zhoangp/Api_Gateway-Courses/services/course"
 	file_service "github.com/Zhoangp/Api_Gateway-Courses/services/file-service"
 	"github.com/Zhoangp/Api_Gateway-Courses/services/middleware"
@@ -50,6 +51,7 @@ func main() {
 	user.RegisterUserRoutes(r, cf, mdware)
 	file_service.RegisterFileRoute(r, cf, mdware)
 	course.RegisterCourseService(r, cf, mdware)
+	cart.NewCartRoutes(r, cf, mdware)
 
 	r.Run(cf.Services.Port)
 }

@@ -6,7 +6,7 @@ import (
 
 type Config struct {
 	Services ServicesConfig
-	Mysql   MysqlConfig
+	Mysql    MysqlConfig
 	Email    EmailConfig
 }
 type EmailConfig struct {
@@ -15,14 +15,15 @@ type EmailConfig struct {
 }
 type ServicesConfig struct {
 	Port                  string
-	FileUrl string
+	FileUrl               string
 	AuthUrl               string
 	CourseUrl             string
+	CartUrl               string
 	CategoryUrl           string
 	TopicUrl              string
 	Secret                string
 	UserUrl               string
-	MigrationURL 		  string
+	MigrationURL          string
 	AccessTokenExpiredIn  int
 	RefreshTokenExpiredIn int
 }
