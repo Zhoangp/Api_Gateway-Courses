@@ -18,6 +18,7 @@ func RegisterAuthRoutes(r *gin.Engine, c *config.Config, middleware *middleware.
 	routes.POST("/register", authHandler.Register())
 	routes.GET("/token", authHandler.NewToken())
 	routes.POST("/account", authHandler.GetTokenVerifyAccount())
+	routes.POST("/password", authHandler.GetTokenResetPassword())
 
 	routes.Use(middleware.RequireVerifyToken())
 	routes.PATCH("/account/:token", authHandler.VerifyAccount())

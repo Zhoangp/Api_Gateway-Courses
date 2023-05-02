@@ -25,7 +25,9 @@ func (m *MiddleareManager) RequireVerifyToken() gin.HandlerFunc {
 		}
 		c.Set("emailUser", payload.Email)
 		c.Set("password", payload.Password)
+		c.Set("key", payload.Key)
 		c.Set("verified", payload.Verified)
+
 		c.Next()
 
 	}
