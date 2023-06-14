@@ -5,7 +5,8 @@ import "services/error/pb/error.proto";
 
 service CartService {
   rpc GetCart(GetCartRequest) returns(GetCartResponse);
-  rpc AddItem(AddItemRequest) returns(AddItemResponse);
+  rpc AddItem(CartItemRequest) returns(CartItemResponse);
+  rpc RemoveItem(CartItemRequest) returns(CartItemResponse);
 }
 
 message Image {
@@ -25,6 +26,7 @@ message Course {
   string status = 10 ;
   float rating = 11 ;
   Image thumbnail = 12;
+  string instructorId = 14;
 }
 message Cart {
   string id = 1;
@@ -37,12 +39,14 @@ message GetCartRequest {
 }
 message GetCartResponse {
   Cart cart = 1;
-  error.ErrorResponse error = 2;
+  string totalCourse = 2;
+  error.ErrorResponse error = 3;
 }
-message AddItemRequest {
+message CartItemRequest {
   string cartId = 1;
   string courseId = 2;
 }
-message AddItemResponse {
+message CartItemResponse {
   error.ErrorResponse error = 1;
 }
+

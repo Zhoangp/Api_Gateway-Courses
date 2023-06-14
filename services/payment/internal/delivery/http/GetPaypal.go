@@ -2,25 +2,24 @@ package http
 
 import (
 	"fmt"
-	"github.com/Zhoangp/Api_Gateway-Courses/services/cart/pb"
+	"github.com/Zhoangp/Api_Gateway-Courses/services/payment/pb"
 	"github.com/gin-gonic/gin"
 )
 
-func (hdl cartHandler) GetCart() gin.HandlerFunc {
+func (hdl paymentHandler) GetPaypal() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		userId := ctx.MustGet("userId").(string)
-		res, err := hdl.client.GetCart(ctx, &pb.GetCartRequest{
-			Id: userId,
+		res, err := hdl.client.GetPaypal(ctx, &pb.GetPayalRequest{
+			UserId: userId,
 		})
 		if err != nil {
-			fmt.Println(err)
+			fmt.Print(err)
 			panic(err)
 		}
 		if res.Error != nil {
-			fmt.Println(res.Error)
+			fmt.Print(res.Error)
 			panic(res.Error)
 		}
-		fmt.Println(res)
 		ctx.JSON(200, res)
 	}
 }

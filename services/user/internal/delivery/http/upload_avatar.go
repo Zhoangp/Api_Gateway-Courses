@@ -39,6 +39,7 @@ func (hdl UserHandler) UpdateAvatar() gin.HandlerFunc {
 			Height:   "250px",
 		})
 		if err != nil {
+
 			fmt.Println(err)
 			panic(err)
 		}

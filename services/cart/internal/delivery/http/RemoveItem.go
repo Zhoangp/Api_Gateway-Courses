@@ -8,15 +8,14 @@ import (
 	"reflect"
 )
 
-func (hdl cartHandler) AddItem() gin.HandlerFunc {
+func (hdl cartHandler) RemoveItem() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		userId := ctx.MustGet("userId").(string)
 		var data model.AddItem
 		if err := ctx.ShouldBind(&data); err != nil {
 			panic(err)
 		}
-		res, err := hdl.client.AddItem(ctx, &pb.CartItemRequest{
-			CartId:   userId,
+		res, err := hdl.client.RemoveItem(ctx, &pb.CartItemRequest{
+			CartId:   data.CartId,
 			CourseId: data.CourseId,
 		})
 		if err != nil {

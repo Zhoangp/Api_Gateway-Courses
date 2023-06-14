@@ -8,6 +8,7 @@ import (
 	"github.com/Zhoangp/Api_Gateway-Courses/services/course"
 	file_service "github.com/Zhoangp/Api_Gateway-Courses/services/file-service"
 	"github.com/Zhoangp/Api_Gateway-Courses/services/middleware"
+	"github.com/Zhoangp/Api_Gateway-Courses/services/payment"
 	"github.com/Zhoangp/Api_Gateway-Courses/services/user"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -52,6 +53,7 @@ func main() {
 	file_service.RegisterFileRoute(r, cf, mdware)
 	course.RegisterCourseService(r, cf, mdware)
 	cart.NewCartRoutes(r, cf, mdware)
+	payment.NewPaymentRoutes(r, cf, mdware)
 
 	r.Run(cf.Services.Port)
 }

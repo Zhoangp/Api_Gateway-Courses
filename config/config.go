@@ -20,6 +20,7 @@ type ServicesConfig struct {
 	CourseUrl             string
 	CartUrl               string
 	CategoryUrl           string
+	PaymentUrl            string
 	TopicUrl              string
 	Secret                string
 	UserUrl               string

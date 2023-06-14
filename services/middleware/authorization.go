@@ -35,7 +35,6 @@ func (m *MiddleareManager) RequireVerifyToken() gin.HandlerFunc {
 func (m *MiddleareManager) RequiredAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		s := c.Request.Header.Get("Authorization")
-
 		token, err := extractToken(s)
 		if err != nil {
 			panic(err)

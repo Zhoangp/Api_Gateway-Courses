@@ -4,8 +4,21 @@ option go_package = "github.com/Zhoangp/Api_Gateway-Courses/services/course/pb";
 service CourseService {
   rpc GetCourses(GetCoursesRequest) returns (GetCoursesResponse);
   rpc GetCourse(GetCourseRequest) returns (GetCourseResponse);
+  rpc GetAllCategories(GetAllCategoriesRequest) returns(GetAllCategoriesResponse);
+  rpc Enrollment(EnrollmentRequest) returns (EnrollmentResponse);
+  rpc GetCourseContent(GetCourseContentRequest) returns (GetCourseContentResponse);
+  rpc GetEnrollments(GetEnrollmentsRequest) returns (GetEnrollmentsResponse);
+  rpc CreateCourse(CreateCourseRequest) returns (CreateCourseResponse);
+  rpc GetPrices(GetPricesRequest) returns (GetPricesResponse);
+  rpc UpdateCourse(UpdateCourseRequest) returns (UpdateCourseResponse);
+  rpc PublishCourse(PublishCourseRequest) returns (PublishCourseResponse);
+  rpc GetCourseWithInstructor(GetCourseWithInstructorRequest) returns (GetCourseWithInstructorResponse);
+  rpc DeleteCourse(DeleteCourseRequest) returns (DeleteCourseResponse);
+
+
 }
 import "services/error/pb/error.proto";
+import "services/user/pb/user.proto";
 
 
 
@@ -31,29 +44,62 @@ message Section {
   int32 numberOfLectures = 3;
   repeated Lecture lectures = 4;
 }
+message Goal {
+  string content = 1;
+}
+
 message Course {
   string id = 1;
   string title = 2;
-  string description = 3 ;
-  string level = 4 ;
-  string language = 5 ;
-  string price = 6 ;
-  float discount = 7 ;
-  string currency = 8 ;
-  string duration = 9 ;
-  string status = 10 ;
-  float rating = 11 ;
-  Image thumbnail = 12;
-  repeated Section sections = 13;
+  string SubCategory = 3;
+  repeated Goal goals = 4;
+  string requirement = 5;
+  string  level = 6;
+  repeated Section sections = 7;
+  string description = 8;
+  string  language = 9;
+  bool isPaid = 10;
+  coupon discount = 11;
+  price price = 12;
+  int32 TotalSections = 13;
+  int32 TotalLectures = 14;
+  string TotalLength = 15;
+  string NumReviews = 16;
+  string AvgRating = 17;
+  Image thumbnail = 18;
+  user.Instructor instructor = 19;
 
+}
+message coupon {
+  string id = 1;
+  string percent = 2;
+  string code = 3;
+}
+
+message Instructor {
+  string id = 1;
+  string name = 2;
+
+}
+message price {
+  string id = 1;
+  string value = 2;
+  string currency = 3;
+
+}
+message link {
+  string href = 1;
+  string rel = 2;
+  string method = 3;
 }
 message GetCoursesRequest {
   int32 page = 1;
   int32 pageSize = 2;
 }
 message GetCoursesResponse {
-  repeated Course courses = 1;
-  error.ErrorResponse error = 2;
+  repeated link links = 1;
+  repeated Course courses = 2;
+ error.ErrorResponse error = 3;
 }
 
 message GetCourseRequest {
@@ -62,4 +108,107 @@ message GetCourseRequest {
 message GetCourseResponse {
   Course course = 1;
   error.ErrorResponse error = 2;
+}
+message Category {
+  string id = 1;
+  string name = 2;
+  repeated SubCategory subcategories = 3;
+}
+message SubCategory {
+  string id = 1;
+  string name = 2;
+  string categoryId = 3;
+}
+message GetAllCategoriesRequest {
+
+}
+message GetAllCategoriesResponse {
+  repeated Category categories = 1;
+  error.ErrorResponse error = 2;
+}
+message EnrollmentRequest {
+  string userId = 1;
+  string courseId = 2;
+
+}
+message EnrollmentResponse {
+  error.ErrorResponse error = 1;
+}
+message GetCourseContentRequest {
+  string userId = 1;
+  string courseId = 2;
+}
+message GetCourseContentResponse {
+  Course course = 1;
+  error.ErrorResponse error = 2;
+}
+message GetEnrollmentsRequest {
+  string userId = 1;
+}
+message Enrollment {
+  string CourseId = 1;
+  string title = 2;
+  Image thumbnail = 3;
+}
+message GetEnrollmentsResponse {
+  repeated Enrollment enrollments = 1;
+  error.ErrorResponse error = 2;
+}
+message UpdateCourseResponse {
+  error.ErrorResponse error = 1;
+
+}
+message UpdateCourseRequest {
+  string title = 1;
+  string SubCategory = 2;
+  string goals = 3;
+  string requirement = 4;
+  string  level = 5;
+  repeated Section sections = 6;
+  string description = 7;
+  string  language = 8;
+  bool isPaid = 9;
+  int32 price = 10;
+  Image thumbnail = 11;
+  string instructorId = 12;
+  string courseId = 13;
+}
+message CreateCourseRequest {
+  string title = 1;
+  string SubCategoryId = 2;
+  string instructorId = 3;
+}
+message CreateCourseResponse {
+  string courseId = 1;
+  error.ErrorResponse error = 2;
+}
+message GetPricesRequest {
+
+}
+message  GetPricesResponse {
+  repeated price prices = 1;
+  error.ErrorResponse error = 2;
+}
+message PublishCourseRequest {
+  string courseId = 1;
+  string userId = 2;
+}
+message PublishCourseResponse {
+  repeated string errorsValidate = 1;
+
+  error.ErrorResponse error = 2;
+}
+message GetCourseWithInstructorRequest {
+  string userId = 1;
+}
+message GetCourseWithInstructorResponse {
+  repeated Course courses = 1;
+  error.ErrorResponse error = 2;
+}
+message DeleteCourseRequest {
+  string courseId = 1;
+  string userId = 2;
+}
+message DeleteCourseResponse {
+  error.ErrorResponse error = 1;
 }

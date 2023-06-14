@@ -14,4 +14,5 @@ func NewCartRoutes(r *gin.Engine, cf *config.Config, mdw *middleware.MiddleareMa
 	router.Use(mdw.RequiredAuth())
 	router.GET("", cartHdl.GetCart())
 	router.POST("", cartHdl.AddItem())
+	router.DELETE("", cartHdl.RemoveItem())
 }

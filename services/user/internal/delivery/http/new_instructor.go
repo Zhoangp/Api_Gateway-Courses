@@ -8,13 +8,13 @@ import (
 
 func (hdl UserHandler) NewInstructor() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		email := ctx.MustGet("emailUser").(string)
+		userId := ctx.MustGet("userId").(string)
 		var data model.NewInstrcutorRequest
 		if err := ctx.ShouldBind(&data); err != nil {
 			panic(err)
 		}
 		res, err := hdl.client.NewInstructor(ctx, &pb.NewInstructorRequest{
-			Email:    email,
+			UserId:   userId,
 			Website:  data.Website,
 			Linkedin: data.LinkedIn,
 			Youtube:  data.Youtube,

@@ -7,9 +7,6 @@ import (
 	"google.golang.org/grpc"
 )
 
-type ServiceClient struct  {
-	Client pb.FileServiceClient
-}
 func InitServiceClient(c *config.Config) pb.FileServiceClient {
 	// using WithInsecure() because no SSL running
 	cc, err := grpc.Dial(c.Services.FileUrl, grpc.WithInsecure())
