@@ -54,6 +54,10 @@ func main() {
 	course.RegisterCourseService(r, cf, mdware)
 	cart.NewCartRoutes(r, cf, mdware)
 	payment.NewPaymentRoutes(r, cf, mdware)
-
-	r.Run(cf.Services.Port)
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3000"
+	}
+	//r.Run(cf.Services.Port)
+	r.Run("0.0.0.0:" + port)
 }
