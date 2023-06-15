@@ -8,6 +8,7 @@ type Config struct {
 	Services ServicesConfig
 	Mysql    MysqlConfig
 	Email    EmailConfig
+	Host     string
 }
 type EmailConfig struct {
 	AppEmail    string
@@ -47,6 +48,5 @@ func LoadConfig(fileName string) (*Config, error) {
 	if err := v.Unmarshal(&cf); err != nil {
 		return nil, err
 	}
-
 	return &cf, nil
 }

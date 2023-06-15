@@ -1,2 +1,3 @@
 *.pem
-#*.yml
+config-app.yml
+config-local.yml

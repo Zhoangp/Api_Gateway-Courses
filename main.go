@@ -19,23 +19,22 @@ import (
 func main() {
 	//Get environment variable
 	env := os.Getenv("ENV")
+	mysqlUrl := os.Getenv("MYSQL_URL")
 	//Load config
 	fileName := "config/config-local.yml"
 	if env == "railway" {
 		fileName = "config/config-railway.yml"
 	} else if env == "app" {
-
 		fileName = "config/config-app.yml"
-
 	}
 
 	cf, err := config.LoadConfig(fileName)
 	if err != nil {
 		log.Fatalln("Failed at config", err)
 	}
-	// Run migrations when deploy the application
+	//Run migrations when deploy the application
 	if env == "app" || env == "railway" {
-		utils.RunDBMigration(cf)
+		utils.RunDBMigration(nil, mysqlUrl)
 	}
 	//create middleware manager instance
 	mdware := middleware.NewMiddlewareManager(cf)
@@ -63,6 +62,9 @@ func main() {
 	if port == "" {
 		port = "3000"
 	}
-	//r.Run(cf.Services.Port)
-	r.Run("0.0.0.0:" + port)
+	if env == "railway" {
+		r.Run("0.0.0.0:" + port)
+	} else {
+		r.Run(cf.Services.Port)
+	}
 }
