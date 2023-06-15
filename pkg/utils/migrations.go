@@ -9,7 +9,7 @@ import (
 )
 
 func RunDBMigration(c *config.Config) {
-	dbURL = fmt.Sprintf("mysql://%s:%s@tcp(%s:%s)/%s",
+	dbURL := fmt.Sprintf("mysql://%s:%s@tcp(%s:%s)/%s",
 		c.Mysql.User,
 		c.Mysql.Password,
 		c.Mysql.Host,
