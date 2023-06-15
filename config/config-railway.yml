@@ -16,5 +16,5 @@ mysql:
   Host: containers-us-west-140.railway.app
   Port: 6955
   User: root
-  Password:
+  Password: zzrw2PZHvhRgvbGzxsC1
   DBName: railway
