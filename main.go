@@ -21,15 +21,20 @@ func main() {
 	env := os.Getenv("ENV")
 	//Load config
 	fileName := "config/config-local.yml"
-	if env == "app" {
+	if env == "railway" {
+		fileName = "config/config-railway.yml"
+	} else if env == "app" {
+
 		fileName = "config/config-app.yml"
+
 	}
+
 	cf, err := config.LoadConfig(fileName)
 	if err != nil {
 		log.Fatalln("Failed at config", err)
 	}
 	// Run migrations when deploy the application
-	if env == "app" {
+	if env == "app" || env == "railway" {
 		utils.RunDBMigration(cf)
 	}
 	//create middleware manager instance
